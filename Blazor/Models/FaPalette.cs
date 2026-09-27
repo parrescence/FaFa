@@ -2,7 +2,7 @@ namespace Fran.Components;
 
 /// <summary>
 /// A consumer-defined color palette to add to <see cref="FaPaletteSwitcher"/> alongside
-/// its twenty-eight built-ins (see <c>Blazor/ARCHITECTURE.md</c>'s "Themes" section for those —
+/// its thirty built-ins (see <c>Blazor/ARCHITECTURE.md</c>'s "Themes" section for those —
 /// they're precompiled into <c>fa-styles.css</c> and picked via the <c>data-fa-palette</c>
 /// attribute). A custom palette has no compiled CSS to select: <see cref="Value"/> is only
 /// ever used prefixed as <c>"custom:{Value}"</c> inside the &lt;option&gt;
