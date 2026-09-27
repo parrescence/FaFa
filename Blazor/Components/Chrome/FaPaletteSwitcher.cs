@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace Fran.Components;
 
 /// <summary>
-/// A single dropdown covering all twenty-eight <c>data-fa-palette</c> values (see
+/// A single dropdown covering all thirty <c>data-fa-palette</c> values (see
 /// <c>theme.css</c>'s "Theme variants" section), plus whatever consumer-supplied
 /// <see cref="FaPalette"/>s are passed via <see cref="CustomPalettes"/>. A `&lt;select&gt;`,
 /// not a button row like <see cref="FaThemeSwitcher"/> — this many options don't fit a pill
@@ -18,7 +18,7 @@ namespace Fran.Components;
 /// (see <c>syncPaletteSelects</c> there), not by anything this component tracks — there's
 /// nothing here for a re-render to get out of sync with.
 ///
-/// The twenty-eight built-ins are precompiled into <c>fa-styles.css</c> and selected purely
+/// The thirty built-ins are precompiled into <c>fa-styles.css</c> and selected purely
 /// by their slug (<c>data-fa-palette="..."</c>) — nothing about their color values ever
 /// needs to reach the browser via C#/JSON. A <see cref="FaPalette"/> from
 /// <see cref="CustomPalettes"/> has no compiled CSS to select, so its own &lt;option&gt;
@@ -66,10 +66,11 @@ public sealed class FaPaletteSwitcher : ComponentBase
         ("floating", "Floating"),
         ("fit", "Fit"),
         ("parrescence", "Parrescence"),
+        ("seattle-sunset", "Seattle Sunset"),
     ];
 
     /// <summary>
-    /// Consumer-supplied palettes appended after the twenty-eight built-ins, each rendered
+    /// Consumer-supplied palettes appended after the thirty built-ins, each rendered
     /// as its own &lt;option value="custom:{Value}"&gt; carrying its colors as JSON data
     /// attributes — see this class's own doc comment and <see cref="FaPalette"/>.
     /// </summary>
