@@ -101,7 +101,7 @@ behavior, not something specific to this package. Add these tags yourself:
 
 ## 5. Pick a color palette (optional)
 
-Twenty-eight seasonal/regional/country color palettes ship in the one `fa-styles.css`,
+Thirty seasonal/regional/country color palettes ship in the one `fa-styles.css`,
 picked via a `data-fa-palette` attribute on `<html>` — a second, independent axis from
 the light/dark/colorblind mode (`data-theme`); any palette combines with any mode.
 Default is `northwest-fall` (no attribute needed) if you skip this step.
@@ -112,7 +112,7 @@ Available names: `northwest-fall`, `southwest-summer`, `northeast-spring`,
 `china-cinnabar`, `india-peacock`, `cameroon-rainforest`, `sahara-desert`,
 `brazil-rainforest`, `brazil-favela`, `portugal-tiles`, `spain-bullfighting`,
 `mexico-day-of-the-dead`, `london-life`, `new-york-nightlife`, `india-henna`, `ruckus`,
-`dinner`, `hang-in`, `floating`, `fit`.
+`dinner`, `hang-in`, `floating`, `fit`, `parrescence`, `seattle-sunset`.
 
 **Option A — pick one at build time**, hardcoded in your host page:
 
@@ -127,7 +127,7 @@ dropdown:
 <FaPaletteSwitcher />
 ```
 
-**Option C — bring your own palette at runtime**, in addition to the twenty-eight
+**Option C — bring your own palette at runtime**, in addition to the thirty
 built-ins, by passing `FaPalette` objects to `FaPaletteSwitcher`'s `CustomPalettes`
 parameter:
 

@@ -145,7 +145,7 @@ Two binding shapes show up repeatedly:
 
 - [Layout shells](layout-shells.md) — `FaStandardShell`/`FaSidebarShell` + `FaHeader`/`FaFooter`/`FaSidebar`
 - [FaThemeSwitcher](theme-switcher.md) — Light/Dark/Colorblind-safe buttons
-- [FaPaletteSwitcher](palette-switcher.md) — dropdown over all 28 color palettes
+- [FaPaletteSwitcher](palette-switcher.md) — dropdown over all 30 color palettes
 - [FaInputStyleSwitcher](input-style-switcher.md) — Standard/Minimal/Maximal buttons for the app-wide input-style axis
 - [FaUiStyleSwitcher](ui-style-switcher.md) — Flow/Terse/Typewriter buttons for the app-wide UI-style axis
 - [FaFontStyleSwitcher](font-style-switcher.md) — 10 font styles (DOS, CLI, Elementary, College, Flowing, Water, Rock, Comical, Flow, Contrasting)

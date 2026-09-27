@@ -133,7 +133,7 @@
       "cameroon-rainforest" | "sahara-desert" | "brazil-rainforest" | "brazil-favela" |
       "portugal-tiles" | "spain-bullfighting" | "mexico-day-of-the-dead" |
       "london-life" | "new-york-nightlife" | "india-henna" | "ruckus" | "dinner" |
-      "hang-in" | "floating" | "fit".
+      "hang-in" | "floating" | "fit" | "parrescence" | "seattle-sunset".
       No attribute (or data-fa-palette="northwest-fall") means the :root defaults
       above. Toggle with window.faSetPalette(name) (js/theme.js — reads/writes
       localStorage the same way faSetTheme does).
@@ -890,6 +890,37 @@
     --fa-alert-info-bg: #e6f9ff;
 }
 
+:root[data-fa-palette="seattle-sunset"] {
+    /* --- Seattle Sunset — inspired by an autumn sunset over Puget Sound with
+       the Olympic Mountain range silhouetted on the horizon and a sailboat in
+       the evening waters. Primary is Olympic Sunset Blaze #c74a17, deeper hover
+       embers #96350d, lighter sunset amber #e87843, sound water slate accent
+       #2b6988, sunburst flare gold #d98c14, dusk ember danger #b83226, alpine
+       heather wine #661b24, Olympic silhouette ridge #1c1f28 dark anchor, and
+       Puget mist cream #f7f2ea canvas. --- */
+    --fa-primary: #c74a17;          /* Olympic Sunset Blaze */
+    --fa-primary-dark: #96350d;
+    --fa-primary-light: #e87843;
+    --fa-footer: #eae0d0;           /* Warm Sound Sand */
+    --fa-glow: #f07126;             /* Sunset Flare Glow */
+    --fa-gold: #d98c14;             /* Sunburst Gold */
+    --fa-accent: #2b6988;           /* Puget Sound Blue */
+    --fa-accent-dark: #1a475e;
+    --fa-ember: #b83226;            /* Dusk Ember */
+    --fa-wine: #661b24;             /* Alpine Heather Wine */
+    --fa-fir: #1c1f28;              /* Olympic Ridge Silhouette */
+    --fa-cream: #f7f2ea;            /* Puget Mist Cream */
+    --fa-surface: #fffdfa;          /* Sound Canvas */
+    --fa-text: #222026;             /* Dusk Charcoal */
+    --fa-text-muted: #736d77;       /* Misty Ridge Lavender */
+    --fa-text-on-primary: #ffffff;
+    --fa-border: #dfd2bf;           /* Warm Sand Border */
+    --fa-border-focus: #96350d;
+    --fa-alert-danger-bg: #fbeae8;
+    --fa-alert-success-bg: #e3edf2;
+    --fa-alert-info-bg: #fcf1e2;
+}
+
 /* --- Dark mode, per palette. Northwest Fall's dark block (no data-fa-palette
    attribute needed — it's the default) stays a single-attribute selector; every
    other palette needs data-fa-palette AND data-theme="dark" together so it wins
@@ -1335,6 +1366,21 @@
     --fa-alert-info-bg: rgba(56, 229, 255, 0.22);
 }
 
+:root[data-fa-palette="seattle-sunset"][data-theme="dark"] {
+    --fa-cream: #10131a;            /* Olympic Night Sky */
+    --fa-surface: #181b24;          /* Dusk Ridge Charcoal */
+    --fa-text: #f1ede6;             /* Evening Star Ivory */
+    --fa-text-muted: #9a94a2;       /* Sound Mist Grey */
+    --fa-border: #353949;           /* Twilight Ridge Slate */
+    --fa-border-focus: #f07126;     /* Sunset Flare Glow */
+    --fa-footer: #141720;           /* Sound Depths */
+    --fa-primary-dark: #e87843;
+    --fa-accent-dark: #5d9bbd;      /* Sound Wave Shimmer */
+    --fa-alert-danger-bg: rgba(184, 50, 38, 0.22);
+    --fa-alert-success-bg: rgba(43, 105, 136, 0.22);
+    --fa-alert-info-bg: rgba(199, 74, 23, 0.22);
+}
+
 /* --- Same dark values again, gated on prefers-color-scheme instead of an explicit
    data-theme="dark" — the OS-level fallback before any explicit mode choice. --- */
 
@@ -1772,6 +1818,21 @@
         --fa-alert-danger-bg: rgba(255, 90, 54, 0.22);
         --fa-alert-success-bg: rgba(0, 210, 180, 0.22);
         --fa-alert-info-bg: rgba(56, 229, 255, 0.22);
+    }
+
+    :root[data-fa-palette="seattle-sunset"]:not([data-theme="light"]):not([data-theme="colorblind"]) {
+        --fa-cream: #10131a;
+        --fa-surface: #181b24;
+        --fa-text: #f1ede6;
+        --fa-text-muted: #9a94a2;
+        --fa-border: #353949;
+        --fa-border-focus: #f07126;
+        --fa-footer: #141720;
+        --fa-primary-dark: #e87843;
+        --fa-accent-dark: #5d9bbd;
+        --fa-alert-danger-bg: rgba(184, 50, 38, 0.22);
+        --fa-alert-success-bg: rgba(43, 105, 136, 0.22);
+        --fa-alert-info-bg: rgba(199, 74, 23, 0.22);
     }
 }
 

@@ -286,13 +286,13 @@ without a matching migration note in the docs.
 `wwwroot/css/scss/` holds one partial per component (`_buttons.scss`,
 `_date.scss`, `_dropdown.scss`, ...), each named after — and scoped to — the
 same section boundaries the pre-split stylesheet used to have as comment headers,
-plus `_palettes.scss` (all twenty-eight palettes' color tokens — the actual "theme"
+plus `_palettes.scss` (all thirty palettes' color tokens — the actual "theme"
 partial), `_base.scss`, `_layout.scss` (page shells/header/footer/sidebar/theme-
 switcher chrome), `_utilities.scss`, and `_responsive.scss`. Partials are plain CSS
 content split by component, not by CSS property (no separate "all borders" or "all
 flexbox" file) — a component's full style stays in one file. They follow the
 standard Sass partial convention (underscore-prefixed, never compiled to their own
-`.css`); `fa-styles.scss` at the `wwwroot/css/` root `@use`s each one in source
+.css); `fa-styles.scss` at the `wwwroot/css/` root `@use`s each one in source
 order and is the only file `Fran.csproj`'s explicit `<SassFile>` lists, so
 a partial can never accidentally get compiled standalone. Adding a new component's
 styles means adding its own `_name.scss` partial and one `@use` line in
@@ -323,13 +323,13 @@ styles means adding its own `_name.scss` partial and one `@use` line in
   design. Only add a token for a value that's supposed to be identical everywhere
   it appears, not for reuse's own sake.
 
-Twenty-eight color palettes live in `_palettes.scss`, picked via `data-fa-palette` on
+Thirty color palettes live in `_palettes.scss`, picked via `data-fa-palette` on
 `<html>` — a second, independent axis from the existing light/dark/colorblind
 `data-theme` mode switch, so every palette × mode combination needs its own dark-mode
 block (`:root[data-fa-palette="X"][data-theme="dark"]`, plus the
 `prefers-color-scheme` equivalent) rather than just a light-mode override. Colorblind
 mode stays palette-agnostic on purpose (see its comment in `_palettes.scss`) — one
-known-safe accent/danger substitution reused across every palette, not twenty-eight
+known-safe accent/danger substitution reused across every palette, not thirty
 separate ones. The full palette list, and how a consumer picks one
 (`<FaPaletteSwitcher>`, `window.faSetPalette(...)`, or a build-time attribute), is
 documented in `docs/install.md`/`docs/palette-switcher.md` — don't duplicate that

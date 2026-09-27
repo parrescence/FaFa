@@ -44,7 +44,7 @@ table and a paged/sortable/filterable grid, a carousel, code blocks, tabs, an
 accordion, breadcrumbs, pagination, a divider, chips, an empty-state placeholder,
 tooltips, a popover, toast notifications, a skeleton loader, page-shell layouts
 (header/sidebar/footer), four full-page templates built on those shells (dashboard,
-form, home, auth), 28 color palettes, a light/dark/colorblind-safe theme switcher, and
+form, home, auth), 30 color palettes, a light/dark/colorblind-safe theme switcher, and
 a hand-drawn SVG icon set — see **[`docs/index.md`](docs/index.md)** for the full
 inventory with usage examples for each, or open [`docs/site.html`](docs/site.html) in
 a browser for the same content as one scrollable page (no server needed).

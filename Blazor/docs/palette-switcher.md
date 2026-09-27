@@ -2,7 +2,7 @@
 
 # FaPaletteSwitcher
 
-A single dropdown covering all twenty-eight built-in color palettes, plus any
+A single dropdown covering all thirty built-in color palettes, plus any
 consumer-supplied ones passed via `CustomPalettes`. Mostly no Blazor state: picking a
 built-in option calls `window.faSetPalette(...)` from `theme.js` directly (client-side
 only), and every `<FaPaletteSwitcher>` on the page stays in sync with whichever palette
@@ -27,7 +27,7 @@ Typically dropped next to `<FaThemeSwitcher>` in a header.
 
 ## Adding your own palettes
 
-The twenty-eight built-ins are precompiled into `fa-styles.css` and selected purely by
+The thirty built-ins are precompiled into `fa-styles.css` and selected purely by
 name. A palette you define yourself has no compiled CSS to select, so it's expressed
 instead as an `FaPalette` object (`Fran.Components`) and passed via `CustomPalettes`:
 
