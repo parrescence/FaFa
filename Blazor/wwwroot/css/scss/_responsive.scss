@@ -21,14 +21,14 @@
         display: inline-flex;
     }
 
-    /* Topbar nav on mobile: hidden by default, shown as a full-width slide-down
+    /* Topbar nav & subheader collapse on mobile: hidden by default, shown as a full-width slide-down
        drawer menu once html carries .fa-header-nav-mobile-open (js/sidebar.js's faToggleNavMobile,
-       wired to the nav's hamburger button above). */
-    .fa-header-nav {
+       wired to the header's hamburger button). */
+    .fa-header-collapse {
         display: none;
     }
 
-    html.fa-header-nav-mobile-open .fa-header-nav {
+    html.fa-header-nav-mobile-open .fa-header-collapse {
         display: flex;
         position: absolute;
         top: 100%;
@@ -40,7 +40,7 @@
         background: var(--fa-primary);
         flex-direction: column;
         align-items: stretch;
-        gap: 0.35rem;
+        gap: 0.4rem;
         box-shadow: 0 4px 14px rgba(140, 67, 27, 0.35), 0 2px 0 var(--fa-glow);
         border-bottom: 2px solid var(--fa-glow);
         z-index: 50;
@@ -49,9 +49,19 @@
         animation: fa-header-nav-slide-down 0.2s ease-out;
     }
 
-    html.fa-header-nav-mobile-open .fa-header-nav a,
-    html.fa-header-nav-mobile-open .fa-header-nav button,
-    html.fa-header-nav-mobile-open .fa-header-nav .fa-header-nav-link {
+    /* Within mobile drawer, header nav displays its items vertically */
+    .fa-header-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+        width: 100%;
+        margin: 0;
+    }
+
+    .fa-header-nav a,
+    .fa-header-nav button,
+    .fa-header-nav .fa-header-nav-link {
         width: 100%;
         padding: 0.65rem 1rem;
         font-size: 1rem;
@@ -59,6 +69,94 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
+    }
+
+    /* Attached subnav row in mobile drawer */
+    .fa-header-subnav-row {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        margin: 0.4rem 0 0 0 !important;
+        padding: 0.5rem 0 0 0 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+        background: transparent !important;
+
+        .fa-subnav {
+            padding: 0;
+            background: transparent;
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+        .fa-subnav-mobile-bar {
+            display: none !important;
+        }
+
+        .fa-subnav-items {
+            display: flex !important;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.35rem;
+            width: 100%;
+            background: transparent !important;
+            padding: 0 !important;
+            border-top: none !important;
+            animation: none !important;
+        }
+
+        .fa-subnav-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--fa-text-on-primary, #FFFFFF);
+            opacity: 0.75;
+            padding: 0.25rem 0.5rem 0.15rem;
+            margin: 0;
+        }
+
+        .fa-subnav-link,
+        .fa-subnav-button {
+            width: 100%;
+            padding: 0.6rem 0.85rem;
+            font-size: 0.95rem;
+            border-radius: var(--fa-radius-md);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--fa-text-on-primary, #FFFFFF);
+            opacity: 0.9;
+
+            &:hover {
+                color: var(--fa-text-on-primary, #FFFFFF);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.16);
+            }
+
+            &.fa-subnav-link-active,
+            &[aria-current="page"],
+            &[aria-current="true"] {
+                color: var(--fa-text-on-primary, #FFFFFF);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .fa-subnav-right {
+            width: 100%;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin: 0.25rem 0 0 0;
+
+            .fa-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     }
 
     @keyframes fa-header-nav-slide-down {

@@ -3,6 +3,7 @@ using Fran.Components;
 using Fran.Icons;
 using Fran.Layout;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Fran.Tests;
@@ -80,7 +81,23 @@ public class FaSubNavTests : BunitContext
     }
 
     [Fact]
-    public void FaHeader_WithSubNavContent_RendersSubNavRow()
+    public void FaSubNav_IconsUseInheritColor()
+    {
+        var items = new List<FaSubNavItem>
+        {
+            new() { Id = "test", Title = "Test Item", Icon = FaIconName.Target }
+        };
+
+        var cut = Render<FaSubNav>(p => p
+            .Add(x => x.Items, items));
+
+        var icon = cut.Find("svg.fa-icon");
+        Assert.NotNull(icon);
+        Assert.Contains("fa-icon-inherit", icon.ClassName);
+    }
+
+    [Fact]
+    public void FaHeader_WithSubNavContent_RendersCollapseWrapperAndToggle()
     {
         RenderFragment subnav = builder =>
         {
@@ -97,28 +114,31 @@ public class FaSubNavTests : BunitContext
         var header = cut.Find("header.fa-header");
         Assert.Contains("fa-header-has-subnav", header.ClassName);
 
+        var collapse = cut.Find(".fa-header-collapse");
+        Assert.NotNull(collapse);
+
         var subnavRow = cut.Find(".fa-header-subnav-row");
         Assert.NotNull(subnavRow);
         Assert.Contains("SubNav Row", subnavRow.TextContent);
+
+        // Mobile hamburger toggle is present for subnav even without main nav
+        var toggle = cut.Find("button.fa-header-nav-toggle");
+        Assert.NotNull(toggle);
     }
 
     [Fact]
-    public void FaStandardShell_WithSubNav_PassesToFaHeader()
+    public void FaStandardShell_WithSubNavService_ResolvesDynamically()
     {
-        RenderFragment subnav = builder =>
-        {
-            builder.OpenElement(0, "span");
-            builder.AddAttribute(1, "class", "shell-subnav-item");
-            builder.AddContent(2, "Shell SubNav Content");
-            builder.CloseElement();
-        };
+        var subNavService = new Fran.Services.FaSubNavService();
+        Services.AddSingleton(subNavService);
 
         var cut = Render<FaStandardShell>(p => p
             .Add(x => x.BrandText, "Test App")
-            .Add(x => x.SubNav, subnav));
+            .AddChildContent<FaHeaderSubNav>(nav => nav
+                .AddChildContent("<span class=\"injected-subnav\">Dynamic SubNav Content</span>")));
 
         var subnavRow = cut.Find(".fa-header-subnav-row");
         Assert.NotNull(subnavRow);
-        Assert.Contains("Shell SubNav Content", subnavRow.TextContent);
+        Assert.Contains("Dynamic SubNav Content", subnavRow.TextContent);
     }
 }
