@@ -1,0 +1,137 @@
+/* ============================= SubNav / SubNavbar Row ============================= */
+
+.fa-subnav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 0.35rem 1.5rem;
+    background: var(--fa-surface-2, #F8FAFC);
+    border-bottom: 1px solid var(--fa-border, #E2E8F0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    gap: 0.75rem;
+    transition: all var(--fa-transition-fast, 0.15s ease);
+}
+
+.fa-subnav-sticky {
+    position: sticky;
+    top: var(--fa-header-height, 56px);
+    z-index: 35;
+}
+
+/* Attached row inside FaHeader */
+.fa-header.fa-header-has-subnav {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+
+    .fa-header-subnav-row {
+        width: 100%;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        padding: 0.3rem 1.5rem 0.4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+
+        .fa-subnav {
+            background: transparent;
+            border-bottom: none;
+            box-shadow: none;
+            padding: 0;
+            min-height: auto;
+            width: 100%;
+        }
+
+        .fa-subnav-title {
+            color: var(--fa-text-on-primary);
+            opacity: 0.85;
+        }
+
+        .fa-subnav-link,
+        .fa-subnav-button {
+            color: var(--fa-text-on-primary);
+            opacity: 0.85;
+
+            &:hover {
+                color: var(--fa-text-on-primary);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            &.fa-subnav-link-active,
+            &[aria-current="page"],
+            &[aria-current="true"] {
+                color: var(--fa-text-on-primary);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.22);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.fa-subnav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.fa-subnav-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--fa-text-muted, #64748B);
+    margin-right: 0.35rem;
+    white-space: nowrap;
+}
+
+.fa-subnav-link,
+.fa-subnav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--fa-text-muted, #64748B);
+    text-decoration: none;
+    border-radius: var(--fa-radius-sm, 8px);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: all var(--fa-transition-fast, 0.15s ease);
+    white-space: nowrap;
+
+    &:hover {
+        color: var(--fa-text, #0F172A);
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    &.fa-subnav-link-active,
+    &[aria-current="page"],
+    &[aria-current="true"] {
+        color: var(--fa-primary, #0D9488);
+        background: var(--fa-surface, #FFFFFF);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        font-weight: 700;
+    }
+}
+
+.fa-subnav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.fa-subnav-mobile-bar {
+    display: none;
+}

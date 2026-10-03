@@ -72,6 +72,104 @@
         }
     }
 
+    /* SubNav on small screens / mobile: collapse into mobile bar with hamburger toggle */
+    .fa-subnav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        min-height: auto;
+    }
+
+    .fa-subnav-mobile-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem 1rem;
+        width: 100%;
+    }
+
+    .fa-subnav-mobile-title {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--fa-text, #0F172A);
+    }
+
+    .fa-subnav-mobile-section-label {
+        color: var(--fa-text-muted, #64748B);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .fa-subnav-mobile-active-label {
+        color: var(--fa-primary, #0D9488);
+        font-weight: 800;
+    }
+
+    .fa-subnav-mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: var(--fa-surface, #FFFFFF);
+        border: 1px solid var(--fa-border, #CBD5E1);
+        border-radius: var(--fa-radius-sm, 6px);
+        padding: 0.3rem 0.65rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--fa-text, #0F172A);
+        cursor: pointer;
+        transition: all var(--fa-transition-fast, 0.15s ease);
+
+        &:hover {
+            background: var(--fa-surface-2, #F8FAFC);
+            border-color: var(--fa-primary, #0D9488);
+        }
+    }
+
+    .fa-subnav-items {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem 1rem 0.75rem;
+        border-top: 1px solid var(--fa-border, #E2E8F0);
+        background: var(--fa-surface-2, #F8FAFC);
+        gap: 0.35rem;
+        width: 100%;
+        animation: fa-subnav-slide-down 0.2s ease-out;
+    }
+
+    .fa-subnav.fa-subnav-mobile-open .fa-subnav-items {
+        display: flex;
+    }
+
+    .fa-subnav-link,
+    .fa-subnav-button {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.9rem;
+    }
+
+    .fa-subnav-right {
+        padding: 0.5rem 1rem;
+        border-top: 1px solid var(--fa-border, #E2E8F0);
+        width: 100%;
+    }
+
+    @keyframes fa-subnav-slide-down {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     /* Off-canvas below this breakpoint, regardless of FaSidebar.Collapsible (that's a
        separate, desktop-only icon-rail affordance) — closed by default and shown only
        once html carries .fa-sidebar-mobile-open (js/sidebar.js's faToggleSidebarMobile,
