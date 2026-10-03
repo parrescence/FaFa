@@ -51,6 +51,12 @@ public sealed class FaSidebarShell : ComponentBase
     /// <summary>Passed straight through to <see cref="FaHeader.NavContent"/>.</summary>
     [Parameter] public RenderFragment? HeaderNav { get; set; }
 
+    /// <summary>Passed straight through to <see cref="FaHeader.SubNavContent"/>.</summary>
+    [Parameter] public RenderFragment? SubNav { get; set; }
+
+    /// <summary>Alias for <see cref="SubNav"/> passed through to <see cref="FaHeader.SubNavContent"/>.</summary>
+    [Parameter] public RenderFragment? HeaderSubNav { get; set; }
+
     /// <summary>Passed straight through to <see cref="FaFooter.NavContent"/>.</summary>
     [Parameter] public RenderFragment? FooterNav { get; set; }
 
@@ -107,6 +113,7 @@ public sealed class FaSidebarShell : ComponentBase
         builder.AddComponentParameter(18, nameof(FaHeader.AccountText), AccountText);
         builder.AddComponentParameter(19, nameof(FaHeader.UserMenuContent), UserMenuContent);
         builder.AddComponentParameter(20, nameof(FaHeader.NavContent), HeaderNav);
+        builder.AddComponentParameter(21, nameof(FaHeader.SubNavContent), SubNav ?? HeaderSubNav);
         builder.CloseComponent();
 
         builder.OpenElement(21, "div");
