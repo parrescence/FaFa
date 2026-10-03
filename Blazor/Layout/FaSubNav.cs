@@ -123,7 +123,8 @@ public sealed class FaSubNav : ComponentBase
 
             builder.OpenComponent<FaIcon>(23);
             builder.AddComponentParameter(24, nameof(FaIcon.Name), FaIconName.Menu);
-            builder.AddComponentParameter(25, nameof(FaIcon.Size), 16);
+            builder.AddComponentParameter(25, nameof(FaIcon.Color), FaIconColor.Inherit);
+            builder.AddComponentParameter(26, nameof(FaIcon.Size), 16);
             builder.CloseComponent();
 
             builder.OpenElement(26, "span");
@@ -220,6 +221,7 @@ public sealed class FaSubNav : ComponentBase
         {
             builder.OpenComponent<FaIcon>(seq++);
             builder.AddComponentParameter(seq++, nameof(FaIcon.Name), item.Icon.Value);
+            builder.AddComponentParameter(seq++, nameof(FaIcon.Color), FaIconColor.Inherit);
             builder.AddComponentParameter(seq++, nameof(FaIcon.Size), 15);
             builder.CloseComponent();
         }

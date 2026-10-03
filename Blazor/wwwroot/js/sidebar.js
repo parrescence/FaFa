@@ -92,7 +92,7 @@
         // Nav mobile menu closing
         if (document.documentElement.classList.contains(NAV_MOBILE_CLASS_NAME)) {
             if (!e.target.closest('[data-nav-mobile-toggle]')) {
-                if (e.target.closest('.fa-header-nav a') || e.target.closest('.fa-header-nav button') || !e.target.closest('.fa-header-nav')) {
+                if (e.target.closest('.fa-header-nav a') || e.target.closest('.fa-header-nav button') || e.target.closest('.fa-header-subnav-row a') || e.target.closest('.fa-header-subnav-row button') || e.target.closest('.fa-subnav-link') || e.target.closest('.fa-subnav-button') || !e.target.closest('.fa-header-collapse')) {
                     document.documentElement.classList.remove(NAV_MOBILE_CLASS_NAME);
                     var navButtons = document.querySelectorAll('[data-nav-mobile-toggle]');
                     for (var n = 0; n < navButtons.length; n++) {

@@ -6,13 +6,29 @@
     font-size: 0.95rem;
     border-radius: var(--fa-radius-pill);
     padding: 0.55rem 1.4rem;
-    border: var(--fa-border-width) solid transparent;
+    border: var(--fa-border-width, 1.5px) solid transparent;
     cursor: pointer;
     transition: background-color var(--fa-transition-fast), border-color var(--fa-transition-fast), color var(--fa-transition-fast), transform 0.05s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
 }
+
+    /* Ensure human-readable contrast for all icons inside buttons by matching button text color */
+    .fa-btn .fa-icon,
+    .fa-btn svg {
+        color: inherit !important;
+        fill: currentColor !important;
+    }
+
+    .fa-btn .fa-icon path,
+    .fa-btn .fa-icon circle,
+    .fa-btn .fa-icon rect,
+    .fa-btn svg path,
+    .fa-btn svg circle,
+    .fa-btn svg rect {
+        fill: currentColor !important;
+    }
 
     .fa-btn:active {
         transform: translateY(1px);
@@ -32,6 +48,7 @@
     .fa-btn-primary:hover:not(:disabled) {
         background: var(--fa-primary-dark);
         border-color: var(--fa-primary-dark);
+        color: var(--fa-text-on-primary);
     }
 
     .fa-btn-primary:focus-visible {
@@ -42,13 +59,14 @@
 
 .fa-btn-secondary {
     background: var(--fa-surface);
-    color: var(--fa-primary-dark);
+    color: var(--fa-text);
     border-color: var(--fa-border);
 }
 
     .fa-btn-secondary:hover:not(:disabled) {
         background: var(--fa-footer);
         border-color: var(--fa-glow);
+        color: var(--fa-text);
     }
 
     .fa-btn-secondary:focus-visible {
@@ -74,6 +92,58 @@
         border-color: var(--fa-border-focus);
         outline: none;
     }
+
+/* Dark mode button contrast enforcement */
+:root[data-theme="dark"] .fa-btn-secondary {
+    background: var(--fa-surface);
+    color: var(--fa-text);
+    border-color: var(--fa-border);
+
+    &:hover:not(:disabled) {
+        background: var(--fa-surface-2, rgba(255, 255, 255, 0.1));
+        border-color: var(--fa-primary-light, var(--fa-primary));
+        color: var(--fa-text);
+    }
+}
+
+:root[data-theme="dark"] .fa-btn-outline {
+    color: var(--fa-primary-light, #FFFFFF);
+    border-color: var(--fa-primary-light, #FFFFFF);
+
+    &:hover:not(:disabled) {
+        background: var(--fa-primary);
+        color: var(--fa-text-on-primary);
+    }
+}
+
+/* High-contrast buttons inside header and subnav row */
+.fa-header .fa-btn-secondary,
+.fa-header-subnav-row .fa-btn-secondary,
+.fa-header .fa-btn-primary,
+.fa-header-subnav-row .fa-btn-primary {
+    background: #FFFFFF !important;
+    color: var(--fa-primary-dark, #0F172A) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+
+    &:hover:not(:disabled) {
+        background: #F1F5F9 !important;
+        color: var(--fa-primary-dark, #0F172A) !important;
+        border-color: #FFFFFF !important;
+    }
+}
+
+.fa-header .fa-btn-outline,
+.fa-header-subnav-row .fa-btn-outline {
+    background: transparent !important;
+    color: var(--fa-text-on-primary, #FFFFFF) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+
+    &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.22) !important;
+        color: #FFFFFF !important;
+        border-color: #FFFFFF !important;
+    }
+}
 
 .fa-btn-danger {
     background: var(--fa-ember);
