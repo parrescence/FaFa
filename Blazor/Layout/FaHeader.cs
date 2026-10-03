@@ -67,6 +67,12 @@ public sealed class FaHeader : ComponentBase
     /// <summary>Alias for <see cref="NavContent"/> for convenience.</summary>
     [Parameter] public RenderFragment? NavButtons { get; set; }
 
+    /// <summary>Optional secondary navigation row / subnavbar rendered as an attachment under the header.</summary>
+    [Parameter] public RenderFragment? SubNavContent { get; set; }
+
+    /// <summary>Alias for <see cref="SubNavContent"/> for convenience.</summary>
+    [Parameter] public RenderFragment? SubNav { get; set; }
+
     /// <summary>Whether the header scrolls away with the page (default) or stays pinned to the top.</summary>
     [Parameter] public FaNavPosition Position { get; set; } = FaNavPosition.Standard;
 
@@ -98,9 +104,10 @@ public sealed class FaHeader : ComponentBase
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var effectiveNav = NavContent ?? NavButtons;
+        var effectiveSubNav = SubNavContent ?? SubNav;
 
         builder.OpenElement(0, "header");
-        builder.AddAttribute(1, "class", CssClassNames.Combine("fa-header", PositionClass));
+        builder.AddAttribute(1, "class", CssClassNames.Combine("fa-header", PositionClass, effectiveSubNav is not null ? "fa-header-has-subnav" : null));
 
         builder.OpenElement(2, "div");
         builder.AddAttribute(3, "class", "fa-header-left");
@@ -226,6 +233,15 @@ public sealed class FaHeader : ComponentBase
         }
 
         builder.CloseElement(); // .fa-header-user
+
+        if (effectiveSubNav is not null)
+        {
+            builder.OpenElement(71, "div");
+            builder.AddAttribute(72, "class", "fa-header-subnav-row");
+            builder.AddContent(73, effectiveSubNav);
+            builder.CloseElement(); // div.fa-header-subnav-row
+        }
+
         builder.CloseElement(); // header
     }
 }
