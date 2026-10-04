@@ -741,6 +741,166 @@ html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link:focus-visible
     transform: translateY(-50%) translateX(0) scale(1);
 }
 
+/* Sub-Navigation (subgroups & sublinks) within the sidebar */
+.fa-sidebar-subgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin: 0.2rem 0 0.4rem 1.4rem;
+    padding-left: 0.5rem;
+    border-left: 1.5px solid rgba(255, 255, 255, 0.22);
+    animation: fa-subgroup-expand 0.18s ease-out;
+}
+
+@keyframes fa-subgroup-expand {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fa-sidebar-sublink,
+a.fa-sidebar-sublink,
+label.fa-sidebar-sublink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--fa-radius-sm);
+    color: var(--fa-text-on-primary, #ffffff) !important;
+    text-decoration: none !important;
+    font-size: 0.825rem;
+    font-weight: 500;
+    opacity: 0.9;
+    position: relative;
+    min-width: 0;
+    transition: background-color var(--fa-transition-fast), opacity var(--fa-transition-fast), transform var(--fa-transition-fast);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.18);
+        opacity: 1;
+        color: var(--fa-text-on-primary, #ffffff) !important;
+        transform: translateX(2px);
+    }
+
+    &.active {
+        background: rgba(0, 0, 0, 0.32);
+        opacity: 1;
+        color: var(--fa-text-on-primary, #ffffff) !important;
+        font-weight: 700;
+        box-shadow: inset 0 0 0 1.5px var(--fa-glow, rgba(255, 255, 255, 0.4));
+    }
+}
+
+.fa-sublink-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--fa-text-on-primary, #ffffff) !important;
+    flex: 1;
+    min-width: 0;
+}
+
+.fa-sublink-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--fa-text-on-primary, #ffffff) !important;
+
+    svg {
+        color: var(--fa-text-on-primary, #ffffff) !important;
+        fill: currentColor;
+    }
+}
+
+/* Collapsed sidebar rail handling for subgroups and sublinks */
+html.fa-sidebar-collapsed .fa-sidebar-subgroup {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+    margin: 0.25rem 0 0.5rem 0 !important;
+    padding: 0 !important;
+    border-left: none !important;
+    overflow: visible !important;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 0.15rem auto 0.25rem auto;
+    }
+}
+
+html.fa-sidebar-collapsed .fa-sidebar-sublink,
+html.fa-sidebar-collapsed a.fa-sidebar-sublink,
+html.fa-sidebar-collapsed label.fa-sidebar-sublink {
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+    min-width: 2.6rem !important;
+    min-height: 2.6rem !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: var(--fa-radius-md) !important;
+    position: relative !important;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.25) !important;
+        opacity: 1 !important;
+        transform: scale(1.06) !important;
+    }
+
+    &.active {
+        background: rgba(0, 0, 0, 0.38) !important;
+        box-shadow: inset 0 0 0 1.5px var(--fa-glow, rgba(255, 255, 255, 0.45)) !important;
+        opacity: 1 !important;
+    }
+
+    .fa-sublink-label,
+    .fa-sublink-suffix,
+    .fa-sublink-dot {
+        display: none !important;
+        max-width: 0 !important;
+    }
+
+    &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        left: calc(100% + 0.9rem);
+        top: 50%;
+        transform: translateY(-50%) translateX(-6px) scale(0.94);
+        background: var(--fa-primary-dark);
+        color: var(--fa-text-on-primary);
+        padding: 0.45rem 0.8rem;
+        border-radius: var(--fa-radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1.5px var(--fa-glow);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--fa-transition-fast), transform var(--fa-transition-fast);
+        z-index: 99999;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+        opacity: 1 !important;
+        transform: translateY(-50%) translateX(0) scale(1) !important;
+    }
+}
+
 /* Terse UI style (data-fa-ui-style="terse", see _palettes.scss) — this file's own
    header/sidebar "lifted" shadows are hardcoded, not routed through
    --fa-border-glow like most components, so they need their own flattening here

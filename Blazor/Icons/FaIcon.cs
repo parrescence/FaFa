@@ -358,6 +358,15 @@ public sealed class FaIcon : ComponentBase
                 Circle("12", "16.5", "4.5");
                 Circle("12", "16.5", "2.2");
                 break;
+            case FaIconName.BatchEdit:
+                Circle("4.5", "6", "1.5");
+                Rect("8", "5", "13", "2", "1");
+                Circle("4.5", "12", "1.5");
+                Rect("8", "11", "7", "2", "1");
+                Circle("4.5", "18", "1.5");
+                Rect("8", "17", "4.5", "2", "1");
+                Path("M14 20.5l.8-3 6.2-6.2a1.2 1.2 0 0 1 1.7 0l1 1a1.2 1.2 0 0 1 0 1.7L17.5 20.2l-3.5.3z");
+                break;
         }
 
         builder.CloseElement();
