@@ -1,6 +1,6 @@
 /* ============================= Small screens ============================= */
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     /* Shared opt-in utility, not a per-component class — any component with a
        Responsive parameter (FaButton/FaCard/FaInput/FaSelect/FaTextarea/FaCurrency
        today) adds this one class when Responsive="true" instead of each defining
@@ -268,32 +268,43 @@
         }
     }
 
-    /* Off-canvas below this breakpoint, regardless of FaSidebar.Collapsible (that's a
-       separate, desktop-only icon-rail affordance) — closed by default and shown only
-       once html carries .fa-sidebar-mobile-open (js/sidebar.js's faToggleSidebarMobile,
-       wired to the header's hamburger button above). */
+    /* Off-canvas mobile sidebar drawer below this breakpoint:
+       Closed by default and rendered as a fixed full-viewport overlay drawer
+       when html carries .fa-sidebar-mobile-open. */
     .fa-sidebar {
         display: none;
     }
 
     html.fa-sidebar-mobile-open .fa-sidebar {
-        display: flex;
+        display: flex !important;
+        position: fixed !important;
+        top: var(--fa-header-height, 56px) !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        height: calc(100vh - var(--fa-header-height, 56px)) !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        z-index: 1000 !important;
+        background: var(--fa-surface, #FFFFFF) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        padding: 1rem !important;
     }
 
-    /* Collapse/expand is a desktop affordance — the mobile layout is already a compact
-       icon+label row, so force expanded and hide the toggle rather than letting the two
-       layout modes combine. Scoped to .fa-sidebar-collapsible same as _layout.scss's own
-       collapse rules (a non-collapsible sidebar never picks up width: 64px in the first
-       place, so it has nothing to undo here — but the selectors stay harmless either way
-       since they'd just re-state values already in effect). */
+    html.fa-sidebar-mobile-open .fa-sidebar .fa-sidebar-scroll {
+        overflow-y: auto !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+
     .fa-sidebar,
     html.fa-sidebar-collapsed .fa-sidebar.fa-sidebar-collapsible {
         width: 100%;
         flex: 0 0 auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 0.75rem;
-        box-shadow: 0 2px 0 var(--fa-glow), 0 4px 14px rgba(140, 67, 27, 0.25);
     }
 
     /* Terse UI style (data-fa-ui-style="terse", see _palettes.scss) — same flat
@@ -368,11 +379,12 @@
         display: none;
     }
 
-    /* .fa-table card mode — each row becomes its own bordered card, each cell a
-       label/value pair sourced from the cell's data-label attribute. FaTable.cs
-       emits data-label on every generated <td> automatically; hand-written
-       <table class="fa-table"> markup opts in by adding data-label itself. */
-    .fa-table thead {
+    /* .fa-table & .fa-flex-table card mode — each row becomes its own bordered card, each cell a
+       label/value pair sourced from the cell's data-label attribute. FaTable.cs and FaFlexTable.cs
+       emit data-label on every generated cell automatically; hand-written
+       <div class="fa-flex-table"> markup opts in by adding data-label itself. */
+    .fa-table thead,
+    .fa-flex-table .fa-flex-header {
         /* Same clip technique as .fa-sr-only above, inlined here since a class
            can't be applied conditionally per breakpoint without JS. */
         position: absolute;
@@ -386,7 +398,8 @@
         border: 0;
     }
 
-    .fa-table {
+    .fa-table,
+    .fa-flex-table {
         display: block;
         width: 100%;
         border: none;
@@ -395,12 +408,14 @@
         overflow: visible;
     }
 
-    .fa-table tbody {
+    .fa-table tbody,
+    .fa-flex-table .fa-flex-body {
         display: block;
         width: 100%;
     }
 
-    .fa-table tr {
+    .fa-table tr,
+    .fa-flex-table .fa-flex-row {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -412,11 +427,13 @@
         overflow: hidden;
     }
 
-    .fa-table tr:last-child {
+    .fa-table tr:last-child,
+    .fa-flex-table .fa-flex-row:last-child {
         margin-bottom: 0;
     }
 
-    .fa-table td {
+    .fa-table td,
+    .fa-flex-table .fa-flex-td {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -426,13 +443,15 @@
         border-bottom: 1px solid var(--fa-border);
     }
 
-    /* Assumes the actions column is the last <td> in markup, matching the
+    /* Assumes the actions column is the last cell in markup, matching the
        desktop convention — see .fa-table-actions below. */
-    .fa-table td:last-child {
+    .fa-table td:last-child,
+    .fa-flex-table .fa-flex-td:last-child {
         border-bottom: none;
     }
 
-    .fa-table td::before {
+    .fa-table td::before,
+    .fa-flex-table .fa-flex-td::before {
         content: attr(data-label);
         font-weight: 700;
         color: var(--fa-primary-dark);
@@ -441,13 +460,15 @@
 
     /* Action column: no label, right-aligned, pinned above the data fields
        instead of appearing as just another labeled row. */
-    .fa-table-actions {
+    .fa-table-actions,
+    .fa-flex-table .fa-flex-actions {
         order: -1;
         width: auto;
         justify-content: flex-end;
     }
 
-    .fa-table-actions::before {
+    .fa-table-actions::before,
+    .fa-flex-table .fa-flex-actions::before {
         content: none;
     }
 

@@ -5,20 +5,15 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace Fran.Components;
 
 /// <summary>
-/// Renders a real &lt;table&gt;/&lt;thead&gt;/&lt;tbody&gt; from typed data — pass
-/// <see cref="Columns"/> (header text, defines column order) and <see cref="Rows"/>
-/// (one dictionary per row, keyed by column name, each value a
-/// <see cref="RenderFragment"/> so a cell can hold arbitrary content: text, another
-/// component, a formatted number, ...). Renders through <c>.fa-table</c> in
-/// theme.css, which already styles plain &lt;table&gt; markup — this component exists
-/// so callers get typed headers/rows instead of hand-writing that markup themselves.
-/// Each generated &lt;td&gt; carries a <c>data-label</c> attribute (its column name),
-/// which theme.css's &lt;=720px card mode uses to print a label next to the value —
-/// callers get responsive card layout with no markup changes of their own. Hand-written
-/// <c>&lt;table class="fa-table"&gt;</c> markup opts into card mode by adding
-/// <c>data-label</c> to its own &lt;td&gt;s.
+/// Universal Zero-&lt;table&gt; Semantic Flex Table component.
+/// Renders purely semantic &lt;div&gt; elements equipped with ARIA table roles:
+/// <c>role="table"</c>, <c>role="rowgroup"</c>, <c>role="row"</c>, <c>role="columnheader"</c>,
+/// and <c>role="cell"</c>.
+///
+/// On mobile screens, automatically collapses into clean responsive cards with
+/// left-aligned labels sourced from each cell's <c>data-label</c> attribute.
 /// </summary>
-public sealed class FaTable : ComponentBase
+public sealed class FaFlexTable : ComponentBase
 {
     [Parameter, EditorRequired] public IReadOnlyList<string> Columns { get; set; } = Array.Empty<string>();
     [Parameter, EditorRequired] public IReadOnlyList<IReadOnlyDictionary<string, RenderFragment>> Rows { get; set; } = Array.Empty<IReadOnlyDictionary<string, RenderFragment>>();
@@ -30,13 +25,15 @@ public sealed class FaTable : ComponentBase
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         builder.OpenElement(0, "div");
-        builder.AddAttribute(1, "class", CssClassNames.Combine("fa-table", "fa-flex-table", CssClass));
+        builder.AddAttribute(1, "class", CssClassNames.Combine("fa-flex-table", "fa-table", CssClass));
         builder.AddAttribute(2, "role", "table");
         builder.AddMultipleAttributes(3, AdditionalAttributes);
 
+        // Header
         builder.OpenElement(4, "div");
         builder.AddAttribute(5, "class", "fa-flex-header");
         builder.AddAttribute(6, "role", "row");
+
         var seq = 7;
         foreach (var column in Columns)
         {
@@ -48,30 +45,36 @@ public sealed class FaTable : ComponentBase
         }
         builder.CloseElement(); // .fa-flex-header
 
+        // Body
         builder.OpenElement(seq++, "div");
         builder.AddAttribute(seq++, "class", "fa-flex-body");
         builder.AddAttribute(seq++, "role", "rowgroup");
+
         foreach (var row in Rows)
         {
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "fa-flex-row");
             builder.AddAttribute(seq++, "role", "row");
+
             foreach (var column in Columns)
             {
                 builder.OpenElement(seq++, "div");
                 builder.AddAttribute(seq++, "class", "fa-flex-td");
                 builder.AddAttribute(seq++, "role", "cell");
                 builder.AddAttribute(seq++, "data-label", column);
+
                 if (row.TryGetValue(column, out var cell))
                 {
                     builder.AddContent(seq++, cell);
                 }
+
                 builder.CloseElement(); // .fa-flex-td
             }
+
             builder.CloseElement(); // .fa-flex-row
         }
-        builder.CloseElement(); // .fa-flex-body
 
-        builder.CloseElement(); // .fa-table
+        builder.CloseElement(); // .fa-flex-body
+        builder.CloseElement(); // .fa-flex-table
     }
 }

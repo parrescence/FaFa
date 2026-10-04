@@ -58,3 +58,65 @@
     border: 0;
 }
 
+/* ============================= Semantic Flex Table ============================= */
+/* Universal Semantic Flex Table Support (Zero <table> Policy) */
+.fa-flex-table,
+.fa-table[role="table"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--fa-surface);
+    border: var(--fa-border-width) solid var(--fa-border);
+    border-radius: var(--fa-radius-md);
+    overflow: hidden;
+    box-shadow: var(--fa-border-glow);
+}
+
+.fa-flex-header,
+.fa-table[role="table"] .fa-flex-header {
+    display: flex;
+    background: var(--fa-footer);
+    font-weight: 700;
+    color: var(--fa-primary-dark);
+    border-bottom: 1px solid var(--fa-border);
+}
+
+.fa-flex-body,
+.fa-table[role="table"] .fa-flex-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-flex-row,
+.fa-table[role="table"] .fa-flex-row {
+    display: flex;
+    border-bottom: 1px solid var(--fa-border);
+    transition: background-color var(--fa-transition-fast, 0.15s ease);
+
+    &:hover {
+        background: rgba(232, 135, 61, 0.08);
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.fa-flex-th,
+.fa-flex-td,
+.fa-table[role="table"] .fa-flex-th,
+.fa-table[role="table"] .fa-flex-td {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.fa-flex-th {
+    font-weight: 700;
+    color: var(--fa-primary-dark);
+}
+
+
