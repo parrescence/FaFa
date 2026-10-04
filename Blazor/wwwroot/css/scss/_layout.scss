@@ -479,6 +479,12 @@ html.fa-sidebar-collapsed .fa-sidebar.fa-sidebar-collapsible {
     flex-basis: 64px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    z-index: 10000;
+    overflow: visible;
+
+    .fa-sidebar-scroll {
+        overflow: visible;
+    }
 }
 
 /* FaSidebar's ChildContent lives in this wrapper rather than directly in .fa-sidebar
@@ -687,6 +693,11 @@ html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link {
     padding-right: 0.6rem;
 }
 
+html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link:hover,
+html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link:focus-visible {
+    z-index: 10001;
+}
+
 /* justify-content isn't animatable, so centering the icon has to be a discrete jump —
    applying it via this separate class (added by js/sidebar.js only once the label has
    actually finished collapsing) instead of directly off .fa-sidebar-collapsed keeps
@@ -702,7 +713,8 @@ html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link-text {
 
 /* The "really cool" tooltip: a small pill in the app's own palette, not the browser's
    plain title tooltip. Built from data-tooltip (set alongside each label in
-   NavMenu.razor) via a pseudo-element, so it costs nothing extra to render. */
+   NavMenu.razor) via a pseudo-element, so it costs nothing extra to render.
+   Elevated to z-index 99999 to guarantee rendering above all page content. */
 html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -716,11 +728,11 @@ html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link::after {
     font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 1.5px var(--fa-glow);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1.5px var(--fa-glow);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--fa-transition-fast), transform var(--fa-transition-fast);
-    z-index: 30;
+    z-index: 99999;
 }
 
 html.fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link:hover::after,
