@@ -117,9 +117,9 @@
             }
         }
 
-        // Sidebar mobile menu closing on navigation click
+        // Sidebar mobile menu closing on navigation click or outside click
         if (document.documentElement.classList.contains(MOBILE_CLASS_NAME)) {
-            if (!e.target.closest('[data-sidebar-mobile-toggle]') && e.target.closest('.fa-sidebar a')) {
+            if (!e.target.closest('[data-sidebar-mobile-toggle]') && (!e.target.closest('.fa-sidebar') || e.target.closest('.fa-sidebar a'))) {
                 document.documentElement.classList.remove(MOBILE_CLASS_NAME);
                 var sideButtons = document.querySelectorAll('[data-sidebar-mobile-toggle]');
                 for (var s = 0; s < sideButtons.length; s++) {

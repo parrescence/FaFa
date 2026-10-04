@@ -127,7 +127,7 @@ public class FaTemplatesPhase1Tests : BunitContext
             .Add(x => x.Title, "Orders")
             .Add(x => x.PrimaryAction, (RenderFragment)(b => b.AddMarkupContent(0, "<button class=\"add-order\">Create Order</button>")))
             .Add(x => x.SearchFilterBar, (RenderFragment)(b => b.AddMarkupContent(0, "<input class=\"order-filter\" />")))
-            .Add(x => x.ChildContent, (RenderFragment)(b => b.AddMarkupContent(0, "<table class=\"orders-table\"><tr><td>Order #1</td></tr></table>"))));
+            .Add(x => x.ChildContent, (RenderFragment)(b => b.AddMarkupContent(0, "<div class=\"orders-table fa-flex-table\" role=\"table\"><div class=\"fa-flex-row\" role=\"row\"><div class=\"fa-flex-td\" role=\"cell\">Order #1</div></div></div>"))));
 
         var title = cut.Find("h1.fa-template-list-title");
         Assert.Equal("Orders", title.TextContent.Trim());

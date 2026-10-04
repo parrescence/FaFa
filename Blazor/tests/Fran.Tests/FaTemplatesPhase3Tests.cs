@@ -179,7 +179,7 @@ public class FaTemplatesPhase3Tests : BunitContext
             .Add(x => x.HeaderAction, (RenderFragment)(b => b.AddMarkupContent(0, "<button class=\"btn-upgrade\">Upgrade</button>")))
             .Add(x => x.CurrentPlanContent, (RenderFragment)(b => b.AddMarkupContent(0, "<div class=\"plan-info\">Enterprise tier</div>")))
             .Add(x => x.PaymentMethodsContent, (RenderFragment)(b => b.AddMarkupContent(0, "<div class=\"pm-card\">Visa ending in 4242</div>")))
-            .Add(x => x.InvoicesContent, (RenderFragment)(b => b.AddMarkupContent(0, "<table class=\"inv-table\"><tr><td>INV-001</td></tr></table>"))));
+            .Add(x => x.InvoicesContent, (RenderFragment)(b => b.AddMarkupContent(0, "<div class=\"inv-table fa-flex-table\" role=\"table\"><div class=\"fa-flex-row\" role=\"row\"><div class=\"fa-flex-td\" role=\"cell\">INV-001</div></div></div>"))));
 
         var title = cut.Find("h1.fa-billing-title");
         Assert.Equal("Plans & Invoices", title.TextContent.Trim());
