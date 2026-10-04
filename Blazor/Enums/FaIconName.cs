@@ -68,5 +68,6 @@ public enum FaIconName
     TrendingUp,
     BarChart,
     Swimmer,
-    Medal
+    Medal,
+    BatchEdit
 }

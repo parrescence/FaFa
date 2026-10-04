@@ -20,6 +20,7 @@ public class FaIconTests : BunitContext
     [InlineData(FaIconName.BarChart)]
     [InlineData(FaIconName.Swimmer)]
     [InlineData(FaIconName.Medal)]
+    [InlineData(FaIconName.BatchEdit)]
     public void FaIcon_RendersSvg_ForIconName(FaIconName iconName)
     {
         var cut = Render<FaIcon>(p => p
