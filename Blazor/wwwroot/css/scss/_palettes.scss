@@ -123,6 +123,23 @@
     --fa-border-glow-focus: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+/* Sharp: clean architectural lines, tight 1px borders, crisp micro-radii (2px-4px),
+   and sharp typography (-apple-system / Segoe UI / Roboto). Eliminates fuzzy ambient
+   colored backlights in favor of razor-sharp edge contrast and precise focus rings.
+   Designed for modern high-contrast editorial and dating interfaces like Damaged Goods. */
+:root[data-fa-ui-style="sharp"] {
+    --fa-radius-sm: 2px;
+    --fa-radius-md: 3px;
+    --fa-radius-lg: 4px;
+    --fa-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --fa-border-width: 1px;
+    --fa-border-glow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --fa-border-glow-focus: 0 0 0 1.5px var(--fa-border-focus);
+    --fa-transition-fast: 0.12s ease;
+    --fa-transition-medium: 0.18s ease;
+}
+
+
 /* ============================= Theme variants ============================= */
 /* Two independent axes, both applied via data attributes on <html>:
 
@@ -921,6 +938,36 @@
     --fa-alert-info-bg: #fcf1e2;
 }
 
+:root[data-fa-palette="desert-summer"] {
+    /* --- Desert Summer — inspired by high desert canyons, sun-baked clay, and
+       summer dunes. Built for Damaged Goods with warm terracotta, sunburst gold,
+       canyon rust, and desert sage accents.
+       Primary is Terracotta Blaze #c85a17, deeper hover #a03b0d, sunburst gold
+       #dda136, sage brush #4a7c59, desert charcoal #231b17 anchor, and warm
+       sand cream #f9f3ea canvas. --- */
+    --fa-primary: #c85a17;          /* Terracotta Blaze */
+    --fa-primary-dark: #a03b0d;     /* Canyon Rust */
+    --fa-primary-light: #e07a38;    /* Sun-baked Clay */
+    --fa-footer: #efe5d5;           /* Sand Dune Footer */
+    --fa-glow: #dda136;             /* Sunburst Gold Glow */
+    --fa-gold: #dda136;             /* Sunburst Gold */
+    --fa-accent: #4a7c59;           /* Desert Sage */
+    --fa-accent-dark: #355b40;      /* Deep Sage */
+    --fa-ember: #b83a24;            /* Red Clay Ember */
+    --fa-wine: #74251e;             /* Mesquite Wine */
+    --fa-fir: #231b17;              /* Mesquite Charcoal Anchor */
+    --fa-cream: #f9f3ea;            /* Warm Desert Sand Canvas */
+    --fa-surface: #fffdf9;          /* Adobe White Surface */
+    --fa-text: #231b17;             /* Mesquite Charcoal Text */
+    --fa-text-muted: #7d7064;       /* Weathered Sandstone */
+    --fa-text-on-primary: #ffffff;
+    --fa-border: #e2d5c3;           /* Sun-bleached Border */
+    --fa-border-focus: #a03b0d;     /* Canyon Rust Focus */
+    --fa-alert-danger-bg: #fbeae7;
+    --fa-alert-success-bg: #ebf3ee;
+    --fa-alert-info-bg: #fbf3e4;
+}
+
 /* --- Dark mode, per palette. Northwest Fall's dark block (no data-fa-palette
    attribute needed — it's the default) stays a single-attribute selector; every
    other palette needs data-fa-palette AND data-theme="dark" together so it wins
@@ -1381,6 +1428,21 @@
     --fa-alert-info-bg: rgba(199, 74, 23, 0.22);
 }
 
+:root[data-fa-palette="desert-summer"][data-theme="dark"] {
+    --fa-cream: #14110e;            /* Night Canyon Sand */
+    --fa-surface: #1c1814;          /* Desert Adobe Shadow */
+    --fa-text: #f5efeb;             /* Starlight Bone Ivory */
+    --fa-text-muted: #9c8e82;       /* Twilight Sandstone */
+    --fa-border: #3b322a;           /* Canyon Ridge Border */
+    --fa-border-focus: #dda136;     /* Sunburst Gold Glow */
+    --fa-footer: #0e0c0a;           /* Obsidian Night */
+    --fa-primary-dark: #e07a38;
+    --fa-accent-dark: #6ba87d;      /* Desert Flora Green */
+    --fa-alert-danger-bg: rgba(184, 58, 36, 0.22);
+    --fa-alert-success-bg: rgba(74, 124, 89, 0.22);
+    --fa-alert-info-bg: rgba(221, 161, 54, 0.22);
+}
+
 /* --- Same dark values again, gated on prefers-color-scheme instead of an explicit
    data-theme="dark" — the OS-level fallback before any explicit mode choice. --- */
 
@@ -1833,6 +1895,21 @@
         --fa-alert-danger-bg: rgba(184, 50, 38, 0.22);
         --fa-alert-success-bg: rgba(43, 105, 136, 0.22);
         --fa-alert-info-bg: rgba(199, 74, 23, 0.22);
+    }
+
+    :root[data-fa-palette="desert-summer"]:not([data-theme="light"]):not([data-theme="colorblind"]) {
+        --fa-cream: #14110e;
+        --fa-surface: #1c1814;
+        --fa-text: #f5efeb;
+        --fa-text-muted: #9c8e82;
+        --fa-border: #3b322a;
+        --fa-border-focus: #dda136;
+        --fa-footer: #0e0c0a;
+        --fa-primary-dark: #e07a38;
+        --fa-accent-dark: #6ba87d;
+        --fa-alert-danger-bg: rgba(184, 58, 36, 0.22);
+        --fa-alert-success-bg: rgba(74, 124, 89, 0.22);
+        --fa-alert-info-bg: rgba(221, 161, 54, 0.22);
     }
 }
 
