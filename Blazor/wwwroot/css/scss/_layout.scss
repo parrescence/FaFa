@@ -969,3 +969,32 @@ html[data-fa-ui-style="typewriter"].fa-sidebar-collapsed .fa-sidebar-collapsible
     box-shadow: var(--fa-border-glow);
 }
 
+/* Sharp UI style (data-fa-ui-style="sharp", see _palettes.scss) — clean lines, tight 1px borders,
+   crisp micro-radius, and flat structural geometry. */
+:root[data-fa-ui-style="sharp"] {
+    .fa-header {
+        box-shadow: none;
+        border-bottom: 1px solid var(--fa-border);
+    }
+
+    .fa-sidebar {
+        box-shadow: none;
+        border-right: 1px solid var(--fa-border);
+    }
+
+    .fa-sidebar-toggle:not(:focus-visible) {
+        box-shadow: none;
+    }
+
+    .fa-sidebar-link.active {
+        box-shadow: none;
+        border-left: 2px solid var(--fa-primary);
+    }
+}
+
+html[data-fa-ui-style="sharp"].fa-sidebar-collapsed .fa-sidebar-collapsible .fa-sidebar-link::after {
+    box-shadow: none;
+    border: 1px solid var(--fa-border);
+}
+
+

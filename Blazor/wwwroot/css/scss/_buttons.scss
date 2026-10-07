@@ -258,3 +258,15 @@
         box-shadow: var(--fa-border-glow-focus);
     }
 
+/* Sharp UI style (data-fa-ui-style="sharp", see _palettes.scss) — tight, razor-sharp
+   architectural buttons with crisp 2px micro-radii and strict 1px borders. */
+:root[data-fa-ui-style="sharp"] .fa-btn {
+    border-radius: var(--fa-radius-sm);
+    box-shadow: none;
+    border-width: 1px;
+}
+:root[data-fa-ui-style="sharp"] .fa-btn:focus-visible {
+    box-shadow: var(--fa-border-glow-focus);
+}
+
+
